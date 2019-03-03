@@ -32,7 +32,7 @@ class Stack:
 def getChildURLs(url):
     # print("getChildURLs url:", url)
     try:
-        html = urlopen(url)
+        html = urlopen(url, timeout=20)
     except HTTPError as e:
         return None, e
     if html is None:
@@ -61,6 +61,10 @@ url_dict = {}
 
 st = Stack()
 
+
+rootURL = "http://www.northsouth.edu"
+domainSTR = "northsouth.edu"
+
 ignoreURLs = [
     "google.com",
     "youtube.com",
@@ -68,10 +72,25 @@ ignoreURLs = [
     "twitter.com",
     "instagram.com",
     "linkedin.com",
+    "turnitin.com",
+    "www.aikbanka.rs",
+    "sam.org.rs",
 ]
 
-rootURL = "http://www.northsouth.edu"
-domainSTR = "northsouth.edu"
+def ignoreURL(url = ""):
+    
+    if domainSTR not in url:
+        return True
+    
+    for u in ignoreURLs:
+        if u in url:
+            return True
+
+    
+    return False
+
+
+
 
 
 
@@ -86,6 +105,10 @@ while st.empty() == False:
     print(cURL)
 
     if cURL.endswith(".pdf") or cURL.endswith(".jpg") or cURL.endswith(".png")  or cURL.endswith(".doc") or cURL.endswith(".docx"):
+        url_dict[cURL] = False
+        continue
+
+    if ignoreURL(cURL):
         url_dict[cURL] = False
         continue
 
@@ -132,14 +155,6 @@ while st.empty() == False:
             if hrf.endswith("/"):
                 hrf = hrf[:-1]
             
-            ignore = False
-
-            for u in ignoreURLs:
-                if u in hrf:
-                    ignore = True
-
-            if ignore == True:
-                continue
 
             if hrf in url_dict:
                 # print("\thrf:", hrf , " previously fnd")
