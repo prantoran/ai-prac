@@ -1,0 +1,7 @@
+
+- update __future__ if needed
+`pip install -U future`
+
+- only the mean of the best bandit converges, the others do not converge because eventually they are no longer selected.
+
+- theoretically none of the means could converge given finite number of trials.
