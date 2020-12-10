@@ -1,0 +1,14 @@
+### Upper Confidence Bound
+
+- lots of data makes us more confident in our estimate
+- inequalities:
+    - p(sample mean - true mean >= error) <= f(error)
+    - f(error) decreasing func
+    - Markov inequality: RHS decrease proportional to 1/t
+    - Chebyshev inequality: RHS decreases proportional to 1/(t^2)
+        - a tighter bound
+    - Hoeffding's inequality 
+        - decreases exponentially in (t^2)
+        - used in UCB1
+- provides accurate success estimates for all the bandits
+    - unlike optimistic initial value, which gives correct estimate of the best bandit
