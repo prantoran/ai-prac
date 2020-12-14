@@ -1,0 +1,29 @@
+### Bayesian Bandits / Thompson Sampling
+
+- small dataset -> large confidence interval, & vice versa
+- fat -> explore more, thin -> explore less
+- confidence intervals based on central limit theorem
+    - CLT -> sum of random  variables
+        - ~Normal distribution
+            - which is why confidence interval is bell-shaped
+- confidence interval is a classical frequentist approach
+    - not a bayesian approach
+- thompson's sampling uses bayes rule
+- use conjugate pairs to get rid of denominator (evidence)
+    - make bayesian rule into propotionality
+- conjugate pairs  
+    - special pairs of distributions where we can ignore the evidence
+    - the posterior has the same form as the prior
+- bernoulli conjugate prior
+    - beta distribution is the conjugate prior for bernoulli likelihood
+    - choosing a prior 
+        - choosing alpha, beta for beta distributions
+        - Beta(1, 1) is a Uniform[0, 1]
+            - we are not sure, so assign equal probability
+- analogy of confidence interval applied to posterior
+    - true mean can be anywhere in the range given by the posterior 
+        - (weighted by probability mass)
+- instead of upper bound, use a sample drawn from posterior
+    - thompson sampling
+    - instead of picking one value (upper bound), we can make use of all possible values under the distribution (which will get skinnier over time)
+
