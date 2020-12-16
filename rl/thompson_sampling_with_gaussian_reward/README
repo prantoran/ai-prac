@@ -1,0 +1,25 @@
+#### Bayesian Normal
+
+- instead of a clear win/loose reward
+    - what if the reward is from a different distribution
+        - gaussian distribution
+        - poission
+        - gamma
+    - can apply Thompson sampling to any likelihood distribution
+- need to have conjugate priors
+- In Bayesian ML, precision is used instead of variance
+- precision = 1/variance
+
+- suitable conjugate priors for gaussian likelihood
+| Likelihood                        | Conjugate Prior   |
+| ---------------------------------:|:----------------- |
+| Unknown mean, known precision     | Normal            |
+| Known mean, unknown precision     | Gamma             |
+| Unknown mean, unknown precision   | Normal-Gamma      |
+
+If 𝜏 if fixed, we a posterior over μ only.
+    - Gaussian has 2 parameters (mean, precision)
+
+Thompson algorithm remains the same regardless of what algorith you use.
+    - extra work is for solving for posterior parameters in terms of prior parameters and data
+    - need to find the equations for the posterior
