@@ -1,0 +1,86 @@
+
+state space
+each iteration of the game is an episode
+A terminal state is a state taht ends an episode (i.e. lose 100% health)
+The duration of an episode is from the initial state to terminal state
+
+episodic tasks
+    gridworld, supermario
+
+non-episodic/continuing tasks   
+    controlling the room temperature
+
+environment
+    the world that the agent lives in
+    an agent solves an env means that the trained agent can take more than some threshold reward.
+
+policy
+    a function that maps state to action (the agent's brain)
+    representing a policy   
+        can be function, equation or a neural netowrk
+        can be probabilistic or deterministic
+
+action space
+    set of all possible actions
+
+
+choosing rewards
+- in gridworld: +1 winning state, -1 losing state
+- 0 reward no matter what then the agent never learns that one action is better than another
+    - -1 for each step
+- rewarding the agent for using human strategies would be detrimental to discovering better novel strategies
+
+
+The Markov Property
+- language models
+    - sentences are sequences of words, and words are states
+    - probability model for sequences of words
+- forget about any sequence longer than 2
+    - bigram = sequence of length 2
+    - p(quick| the), p(brown | quick) ...
+- first-order markov assumption
+    p(st | s(t-1), s(t-2), ..., s1) = p(st | s(t-1))
+- basis of hidden markov models
+    - speech recognition
+- In deep q-learning for atari games
+    - used screenshots
+    - not just a single frame - they stacked 4 consecutive frames as state
+- state transition matrix
+    - maximum likelihood
+    - for mdps, sth similar with more parameters
+        - Aij = p(st = j | s(t-1) = i) ~ count(i->j) / count(i)
+        - no time index, assuming relation independent of time
+
+
+Markov Decision Processes (MDPS)
+- a discrete-time stochastic control Processes
+- environment
+    - state
+    - reward
+    - S(t+1), R(t+1) ~ p(s', r | s, a)
+- agent
+    - action
+- policy
+    - At ~ π(at | st)
+- increment of timestamp is implicit in the env
+- transition/step
+    - {St, At, R(t+1), S(t+1)}
+    - SARSA
+        - {St, At, R(t+1), S(t+1), A(t+1)}
+- both agent and env are probabilistic
+- state-action diagram
+    - action coming from a particular state
+- environment dynamics
+    - randomness of reward
+        - deterministic: p(s' | s, a)
+        - random: p(s', r | s, a)
+    - randomness of next state
+    - lack of perfect information
+        - accuracy of sensors
+        - incomplete/wrong information
+        - in games where we can't see others' options 
+
+|                          | States are fully observed     | States are partially unobserved  |
+|:------------------------:|:-----------------------------:|:--------------------------------:|
+| System is autonomous     | Markov Model                  | Hidden Markov Model (HMM)        |
+| System is controlled     | Markov Decision Process (MDP) | Partially-Observable MDP (POMDP) |

@@ -1,0 +1,13 @@
+stationarity
+- reward always come from same distribution (iid)
+what if rewad distribution changes over time?
+strong-sense stationarity: entire distribution doesn't change over time
+- white noise is stationary
+Weak-sense stationarity: only mean and autocovariance don't change
+- BTC (Bitcoin) is nonstationary
+
+Dealing with nonstationary reward
+- taking the usual sample mean won't work
+- use learning rate
+- if we use a constant learning rate, we get an exponentially-weighted moving average (EWMA)
+    - exponentially decay over time
