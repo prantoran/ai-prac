@@ -1,0 +1,11 @@
+solution to MDPs
+Centerpiece of MDP: The Bellman Eqn
+    can be solved directly
+        |S| eqns, |S| unknowns
+        many entries will be 0, since transitions s -> s' are sparse
+    instead, iterative policy evaluation is predominantly used 
+        in-place V(s) updates converge faster
+prediction problem
+    finding V(s) given a policy
+control problem
+    finding the optimal policy

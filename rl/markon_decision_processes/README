@@ -84,3 +84,69 @@ Markov Decision Processes (MDPS)
 |:------------------------:|:-----------------------------:|:--------------------------------:|
 | System is autonomous     | Markov Model                  | Hidden Markov Model (HMM)        |
 | System is controlled     | Markov Decision Process (MDP) | Partially-Observable MDP (POMDP) |
+
+
+
+Future rewards
+- want to maximize sum of future rewards
+- return
+    - sum of future rewards
+    - G(t) = R(t+1) + R(t+2) + ... 
+- RL has planning built-in 
+    - by maximizing the sum of future rewards,
+        the agent comes up with whathe plan is necessary automatically
+- discounting
+    - de-evaluate further futuer rewards
+    - 𝛾 = 0 => greedy
+    - 𝛾 = 1 the true sum of future rewards
+    - short episodic tasks should not be discounted
+    - help break infinite loop
+
+value function
+- sum of future rewards is dependent on the policy
+- return can be random  
+    - not sure deterministically what our opponent will do
+    - p(s', r | s, a)
+- value function is expected return from a state s
+- value of a terminal state is always zero
+    - value func is the sum of expected future rewards
+
+Bellman equation
+    - game tree
+        - each leaf node is a terminal state
+        - depth of the tree is the duration
+        - tre shows all possible trajectories
+        - recursion: each child of a tree is a tree
+    - G(t) = R(t+1) + 𝛾G(t+1)
+        - return is recursive
+    - Law of total expectation
+        - E[E[X|Y]] = E[X]
+    - expectation is a linear operation
+    - V(x) = E[R(t+1) + 𝛾V(s') | St = s]        
+    - solving the Bellman eqn is nothing but a system of linear euqations
+        - if policy and env dynamics are known
+        - feasible for small systems with few states
+    - in order to learn, we might want to try performing new actions to improve our existing policy
+        - new action not dictated by the current policy
+    - stochastic policy
+        - allows any action from a given state
+            - sum of future rewards differnt based on what actions taken
+    - 2 kinds of value functions
+        - state-value: V(s) = E[G(t) | St = s]
+        - action-value: Q(s, a) = E[G(t) | St = s, At = a]
+            - Q-table
+- State value V(s) is useful for evaluating a policy
+    - Given a policy, what is the return I can expect?
+- Action value Q(s, a) is useful for control    
+    - I'm in state s, what is the best action to take?
+
+Optimal policy and optimal value function
+- a good policy is one that performs optimal behaviour
+- for comparing policies, equailty must hold for all states in the state space
+- the optimal value func is unique, the optimal policy is not
+- if there were a better value func, then that would be the optimal one
+
+Bellman optimality eqn
+- take the best action
+- optimal state-value vs optimal action-value
+    - V*(s) = max_a(Q*(s, a))
