@@ -3,3 +3,4 @@ webscrap/beautifulsoup/*.csv
 
 python_env/
 
+.ipynb_checkpoints/
