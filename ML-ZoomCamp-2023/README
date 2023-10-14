@@ -1,0 +1,15 @@
+docker run -it --rm --entrypoint=bash python:3.8.12-slim
+
+docker build -t zoomcamp-test .
+
+docker run -it --rm -p 9696:9696 zoomcamp-test
+
+pipenv install awsebcli --dev
+
+eb init -p docker -r eu-west-1 churn-serving
+
+eb local run --port 9696
+
+eb create churn-serving-env
+
+eb terminate churn-serving-env
