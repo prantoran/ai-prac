@@ -6,3 +6,9 @@ python_env/
 .ipynb_checkpoints/
 
 *.h5
+
+__pycache__
+
+ML-ZoomCamp-2023/*/data*
+ML-ZoomCamp-2023/*/*.tflite
+ML-ZoomCamp-2023/*/*.jpg
