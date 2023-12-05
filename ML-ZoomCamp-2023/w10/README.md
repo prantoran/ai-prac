@@ -1,13 +1,29 @@
 
 
 ## Running TensorFlow Serving
-
+### Directly from the terminal
 ```bash
 docker run -it --rm \
     -p 8500:8500 \
     -v "$(pwd)/clothing-model:/models/clothing-model/1" \
     -e MODEL_NAME="clothing-model" \
     tensorflow/serving:2.7.0
+```
+### Using Dockerfile
+```bash
+docker build -t zoomcamp-10-model:xception-v4-001 -f image-model.dockerfile .
+
+docker run -it --rm \
+    -p 8500:8500 \
+    zoomcamp-10-model:xception-v4-001
+```
+## Running Gateway using Dockerfile
+```bash
+docker build -t zoomcamp-gateway:002 -f image-gateway.dockerfile .
+
+docker run -it --rm \
+    -p 9696:9696 \
+    zoomcamp-gateway:002
 ```
 
 ## Debugging [breaking change](https://protobuf.dev/news/2022-05-06) in protobuf when running tf-serving
