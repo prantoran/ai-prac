@@ -17,7 +17,7 @@ spec:
         image: ping:001
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "256Mi"
+            cpu: "0.5"
         ports:
         - containerPort: 9696

@@ -276,3 +276,32 @@ Forwarding from [::1]:8080 -> 9696
 ```
 curl localhost:8080/ping
 ```
+
+## Delete a deployment
+- i.e. Not enough resources
+```
+kubectl delete -f deployment.yaml
+```
+
+
+## Login into a pod
+```
+kubectl get pod
+NAME                                         READY   STATUS    RESTARTS      AGE
+ping-deployment-6679dff58d-bl4gm             1/1     Running   3 (29m ago)   14h
+
+kubectl exec -it ping-deployment-6679dff58d-bl4gm -- bash
+
+apt update
+apt install curl
+curl localhost:9696/ping
+curl ping.default.svc.cluster.local/ping
+curl tf-serving-clothing-model.default.svc.cluster.local/predict
+
+apt install telnet
+
+telnet tf-serving-clothing-model.default.svc.cluster.local 8500
+Trying 10.96.56.142...
+Connected to tf-serving-clothing-model.default.svc.cluster.local.
+Escape character is '^]'.
+```
